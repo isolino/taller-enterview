@@ -19,10 +19,11 @@ class LoginViewModel : ViewModel() {
     private val _events: Channel<LoginEvents> = Channel()
     val events = _events.receiveAsFlow()
 
+    private var showError = false
+
 
     fun login(user: String, password: String) {
 
-        val showError = listOf(true, false).random()
 
         viewModelScope.launch {
             _loginState.emit(true)
@@ -34,6 +35,8 @@ class LoginViewModel : ViewModel() {
             } else {
                 _events.send(LoginEvents.Success("Success Login for $user"))
             }
+
+            showError = showError.not()
         }
 
     }

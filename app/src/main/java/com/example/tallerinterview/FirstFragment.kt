@@ -48,7 +48,10 @@ class FirstFragment : Fragment() {
                 }
             }
 
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        }
+
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.events.collect { event ->
                     when (event) {
                         is LoginViewModel.LoginEvents.Error -> Toast.makeText(requireContext(), event.message, Toast.LENGTH_SHORT).show()
@@ -56,7 +59,6 @@ class FirstFragment : Fragment() {
                     }
                 }
             }
-
         }
 
 
