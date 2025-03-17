@@ -22,7 +22,7 @@ class LoginViewModel : ViewModel() {
     private var showError = false
 
 
-    fun login(user: String, password: String) {
+    fun login(user: String, password: String, rememberMe: Boolean) {
 
 
         viewModelScope.launch {

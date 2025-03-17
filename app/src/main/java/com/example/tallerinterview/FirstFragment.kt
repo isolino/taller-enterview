@@ -65,8 +65,9 @@ class FirstFragment : Fragment() {
 
         binding.buttonFirst.setOnClickListener {
             viewModel.login(
-                binding.user.text.toString(),
-                binding.password.text.toString()
+                user = binding.user.text.toString(),
+                password = binding.password.text.toString(),
+                rememberMe = binding.cbRemember.isChecked
             )
         }
     }
